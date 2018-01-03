@@ -1,0 +1,56 @@
+name:                network-socket-performance
+version:             0.1.0.0
+github:              "lpeterse/network-socket-performance"
+license:             BSD3
+author:              "Lars Petersen"
+maintainer:          "info@lars-petersen.net"
+copyright:           "2018 Lars Petersen"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:            Comparing the network with the socket library
+description:         Please see the README on Github at <https://github.com/lpeterse/network-socket-performance#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+benchmarks:
+  network-socket-performance-threaded:
+    main:                Bench.hs
+    source-dirs:         bench
+    ghc-options:
+    - -O2
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N2
+    - -Wall
+    dependencies:
+    - base >= 4.7 && < 5
+    - async
+    - bytestring
+    - deepseq
+    - network
+    - socket
+    - criterion
+    - network-socket-performance
+
+  network-socket-performance-non-threaded:
+    main:                Bench.hs
+    source-dirs:         bench
+    ghc-options:
+    - -O2
+    - -Wall
+    dependencies:
+    - base >= 4.7 && < 5
+    - async
+    - bytestring
+    - deepseq
+    - network
+    - socket
+    - criterion
+    - network-socket-performance
